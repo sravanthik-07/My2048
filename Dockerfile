@@ -6,7 +6,10 @@ RUN yum update -y && \
     yum install -y httpd && \
     yum clean all
 
-# Copy project files from repo to Apache root
+# Set ServerName to suppress warning
+RUN echo "ServerName localhost" >> /etc/httpd/conf/httpd.conf
+
+# Copy project files
 COPY . /var/www/html/
 
 # Expose port
